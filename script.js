@@ -1,22 +1,9 @@
-﻿document.getElementById("year").textContent = new Date().getFullYear();
-
-const elements = document.querySelectorAll(".card, .link-card, .section");
-
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-        }
-    });
-}, { threshold: 0.1 });
-
-elements.forEach((element) => observer.observe(element));
-
-const music = document.getElementById("backgroundMusic");
+﻿const music = document.getElementById("backgroundMusic");
 const musicToggle = document.getElementById("musicToggle");
 const volumeSlider = document.getElementById("volumeSlider");
 
-music.volume = 0;
+music.volume = 1;
+music.muted = false;
 volumeSlider.value = 100;
 
 let audioContext = null;
@@ -28,6 +15,7 @@ function setupAudioAnalyser() {
     if (audioContext) return;
 
     audioContext = new (window.AudioContext || window.webkitAudioContext)();
+
     analyser = audioContext.createAnalyser();
     analyser.fftSize = 256;
     analyser.smoothingTimeConstant = 0.75;
@@ -75,9 +63,9 @@ function updateBackground(bass) {
     bgRotation += (targetRotation - bgRotation) * 0.18;
     bgScale += (targetScale - bgScale) * 0.15;
 
-    document.body.style.setProperty("--bg-x", `${bgX}px`);
-    document.body.style.setProperty("--bg-y", `${bgY}px`);
-    document.body.style.setProperty("--bg-rotation", `${bgRotation}deg`);
+    document.body.style.setProperty("--bg-x", `${ bgX } px`);
+    document.body.style.setProperty("--bg-y", `${ bgY } px`);
+    document.body.style.setProperty("--bg-rotation", `${ bgRotation } deg`);
     document.body.style.setProperty("--bg-scale", bgScale);
 }
 
@@ -109,13 +97,16 @@ async function playMusic() {
 }
 
 window.addEventListener("load", async () => {
-    music.muted = false;
-
     const started = await playMusic();
 
     if (!started) {
         const startOnInteraction = async () => {
-            await playMusic();
+            const success = await playMusic();
+
+            if (success) {
+                music.muted = false;
+                musicToggle.textContent = "🔊";
+            }
 
             document.removeEventListener("click", startOnInteraction);
             document.removeEventListener("touchstart", startOnInteraction);
@@ -153,14 +144,28 @@ musicToggle.addEventListener("click", async function (event) {
         await audioContext.resume();
     }
 
-    if (music.muted) {
+    if (music.muted || music.volume === 0) {
+
+        // Restore volume if it was accidentally set to zero
+        if (music.volume === 0) {
+            const sliderVolume = Number(volumeSlider.value) / 100;
+
+            music.volume = sliderVolume > 0 ? sliderVolume : 1;
+        }
+
         music.muted = false;
         musicToggle.textContent = "🔊";
 
         if (music.paused) {
-            await music.play();
+            try {
+                await music.play();
+            } catch (error) {
+                console.error("Music failed to play:", error);
+            }
         }
+
     } else {
+
         music.muted = true;
         musicToggle.textContent = "🔇";
     }
