@@ -16,7 +16,6 @@
     <meta property="og:url" content="https://zylothgt.github.io/EvilGorillaTag">
     <meta property="og:type" content="website">
 
-    <!-- Purple Discord Embed Sidebar -->
     <meta name="theme-color" content="#FF0000">
 
     <!-- Twitter / X -->
@@ -31,6 +30,15 @@
 
 <body>
 
+    <!-- CLICK TO ENTER -->
+    <div id="enterScreen" class="enter-screen">
+        <div class="enter-content">
+            <h1>Click To Enter</h1>
+            <p>(This is to make sure that the music plays!)</p>
+        </div>
+    </div>
+
+    <!-- NAVBAR -->
     <header class="navbar">
         <div class="logo">
             <img src="Resources/pfp.png" alt="Profile" class="nav-pfp">
@@ -47,6 +55,7 @@
 
     <main>
 
+        <!-- HERO -->
         <section id="home" class="hero">
             <div class="hero-content">
                 <p class="small-title">WELCOME TO</p>
@@ -64,13 +73,17 @@
             </div>
         </section>
 
+        <!-- LINKS -->
         <section id="links" class="section links-section">
 
             <p class="section-label">LINKS</p>
 
             <div class="links">
 
-                <a href="https://discord.gg/htxVdK4BRq" target="_blank" class="link-card">
+                <a href="https://discord.gg/htxVdK4BRq"
+                   target="_blank"
+                   class="link-card">
+
                     <img src="https://cdn.simpleicons.org/discord/5865F2"
                          alt="Discord">
 
@@ -82,8 +95,10 @@
                     <b>→</b>
                 </a>
 
-                <a href="https://discord.gg/htxVdK4BRq" target="_blank" class="link-card">
-                    <!-- <img src="https://cdn.simpleicons.org/meta/0866FF" -->
+                <a href="https://discord.gg/htxVdK4BRq"
+                   target="_blank"
+                   class="link-card">
+
                     <img src="https://cdn.simpleicons.org/discord/5865F2"
                          alt="Meta">
 
@@ -98,6 +113,8 @@
             </div>
 
         </section>
+
+        <!-- PRIVACY POLICY -->
         <section id="privacy-policy" class="section privacy-policy-section">
 
             <p class="section-label">PRIVACY POLICY</p>
@@ -111,6 +128,7 @@
 
         </section>
 
+        <!-- DATA COLLECTION -->
         <section id="data-collection" class="section data-collection-section">
 
             <p class="section-label">DATA COLLECTION</p>
@@ -121,20 +139,23 @@
             </div>
 
         </section>
+
     </main>
 
-
+    <!-- FOOTER -->
     <footer>
-        <p>© <span id="year"></span> ZylothGTH</p>
+        <p>© <span id="year"></span> Evil Gorilla Tag</p>
         <p>Made with 🦍</p>
     </footer>
 
+    <!-- MUSIC -->
     <audio id="backgroundMusic" loop preload="auto">
         <source src="Resources/music.mp3" type="audio/mpeg">
     </audio>
 
+    <!-- MUSIC CONTROLS -->
     <div class="music-controls">
-        <button id="musicToggle" class="music-button">🔇</button>
+        <button id="musicToggle" class="music-button">🔊</button>
 
         <input type="range"
                id="volumeSlider"

@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
-
+/* =========================
+   RESET
+========================= */
 * {
     margin: 0;
     padding: 0;
@@ -20,6 +22,11 @@ html {
     --muted: #999999;
 }
 
+
+/* =========================
+   BODY
+========================= */
+
 body {
     font-family: "Inter", sans-serif;
     background: #08060d;
@@ -27,6 +34,7 @@ body {
     min-height: 100vh;
     position: relative;
 }
+
 
     /* =========================
    MUSIC REACTIVE BACKGROUND
@@ -39,11 +47,61 @@ body {
         background: url("Resources/background.png") center / cover no-repeat;
         filter: blur(6px);
         z-index: -1;
-        transform: translate( var(--bg-x, 0px), var(--bg-y, 0px) ) rotate(var(--bg-rotation, 0deg)) scale(var(--bg-scale, 1));
+        transform: translate( var(--bg-x, 0px), var(--bg-y, 0px) ) rotate( var(--bg-rotation, 0deg) ) scale( var(--bg-scale, 1) );
         transform-origin: center center;
         will-change: transform;
         pointer-events: none;
     }
+
+
+/* =========================
+   CLICK TO ENTER
+========================= */
+
+.enter-screen {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 999999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(8, 6, 13, 0.96);
+    backdrop-filter: blur(15px);
+    cursor: pointer;
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+.enter-content {
+    text-align: center;
+    user-select: none;
+}
+
+    .enter-content h1 {
+        margin: 0 0 12px 0;
+        color: white;
+        font-size: clamp(40px, 7vw, 80px);
+        font-weight: 900;
+        letter-spacing: -3px;
+        text-shadow: 0 0 30px rgba(255, 59, 59, 0.35);
+    }
+
+    .enter-content p {
+        margin: 0;
+        color: #999999;
+        font-size: 14px;
+        font-weight: 500;
+    }
+
+.enter-screen.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
 
 /* =========================
    NAVBAR
@@ -97,6 +155,7 @@ nav {
         nav a:hover {
             color: white;
         }
+
 
 /* =========================
    HERO
@@ -181,6 +240,7 @@ nav {
         background: rgba(255, 255, 255, 0.12);
     }
 
+
 /* =========================
    PROFILE IMAGE
 ========================= */
@@ -204,6 +264,7 @@ nav {
     }
 
 @keyframes float {
+
     0%, 100% {
         transform: translateY(0);
     }
@@ -212,6 +273,7 @@ nav {
         transform: translateY(-12px);
     }
 }
+
 
 /* =========================
    SECTIONS
@@ -235,6 +297,7 @@ nav {
         line-height: 1.8;
         font-size: 16px;
     }
+
 
 /* =========================
    ABOUT CARDS
@@ -277,6 +340,11 @@ nav {
     font-size: 14px;
 }
 
+
+/* =========================
+   LINKS
+========================= */
+
 .links-section {
     width: 100%;
     max-width: 1100px;
@@ -298,10 +366,6 @@ nav {
         margin-left: 0;
     }
 
-/* =========================
-   LINK CARDS
-========================= */
-
 .links {
     display: flex;
     flex-direction: column;
@@ -312,6 +376,11 @@ nav {
     margin-left: 0;
     margin-right: auto;
 }
+
+
+/* =========================
+   LINK CARDS
+========================= */
 
 .link-card {
     display: flex;
@@ -334,8 +403,6 @@ nav {
         background: rgba(255, 59, 59, 0.08);
     }
 
-    /* Actual website icons */
-
     .link-card > img {
         width: 45px;
         height: 45px;
@@ -345,8 +412,6 @@ nav {
         flex-shrink: 0;
         border-radius: 10px;
     }
-
-    /* Text inside cards */
 
     .link-card div {
         flex: 1;
@@ -369,6 +434,7 @@ nav {
         font-size: 20px;
     }
 
+
 /* =========================
    FOOTER
 ========================= */
@@ -382,6 +448,7 @@ footer {
     font-size: 13px;
     border-top: 1px solid var(--border);
 }
+
 
 /* =========================
    MOBILE
@@ -432,6 +499,7 @@ footer {
     }
 }
 
+
 @media (max-width: 500px) {
 
     .logo span {
@@ -449,7 +517,12 @@ footer {
     .section {
         padding: 80px 20px;
     }
+
+    .enter-content h1 {
+        letter-spacing: -2px;
+    }
 }
+
 
 /* =========================
    MUSIC CONTROLS
