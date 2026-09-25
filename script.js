@@ -16,7 +16,7 @@ const music = document.getElementById("backgroundMusic");
 const musicToggle = document.getElementById("musicToggle");
 const volumeSlider = document.getElementById("volumeSlider");
 
-music.volume = 100;
+music.volume = 0;
 volumeSlider.value = 100;
 
 let audioContext = null;
