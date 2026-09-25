@@ -109,7 +109,7 @@ async function playMusic() {
 }
 
 window.addEventListener("load", async () => {
-    music.muted = true;
+    music.muted = false;
 
     const started = await playMusic();
 
